@@ -7,7 +7,7 @@ import 'package:map_example/domain/repositories/map_data_repository.dart';
 class MapDataRepositoryImp implements MapDataRepository {
   @override
   Future<List<MapItemEntiry>> getMapItems({
-    required CoordinateEntiry location,
+    required CoordinateEntity location,
   }) async {
     final json = _mimicFetchDataFromServer();
 

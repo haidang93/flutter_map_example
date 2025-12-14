@@ -1,6 +1,6 @@
 import 'package:map_example/domain/entities/coordinate_entiry.dart';
 
-bool checkOverLap(CoordinateEntiry coor1, CoordinateEntiry coor2, double zoom) {
+bool checkOverLap(CoordinateEntity coor1, CoordinateEntity coor2, double zoom) {
   double deltaLngCal = 0;
   double deltaLatCal = 0;
   if (zoom < 11) {

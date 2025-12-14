@@ -5,7 +5,7 @@ class MapItemModel {
   final String id;
   final String name;
   final String type;
-  final CoordinateEntiry coordinate;
+  final CoordinateEntity coordinate;
 
   MapItemModel({
     required this.id,
@@ -19,7 +19,7 @@ class MapItemModel {
       id: json['id'],
       name: json['name'],
       type: json['type'],
-      coordinate: CoordinateEntiry(
+      coordinate: CoordinateEntity(
         lat: json['coordinate']['lat'],
         lng: json['coordinate']['lng'],
       ),

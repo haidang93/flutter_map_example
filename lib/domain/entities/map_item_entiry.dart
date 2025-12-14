@@ -20,7 +20,7 @@ class MapItemEntiry {
   final String id;
   final String name;
   final MapItemTypeEnum type;
-  final CoordinateEntiry coordinate;
+  final CoordinateEntity coordinate;
 
   MapItemEntiry({
     required this.id,

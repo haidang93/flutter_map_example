@@ -16,7 +16,7 @@ class MapUsecase {
   });
 
   Future<List<MapItemEntiry>> getDataFromLocation({
-    required CoordinateEntiry location,
+    required CoordinateEntity location,
     required double radius,
   }) async {
     var res = <MapItemEntiry>[];
@@ -28,7 +28,7 @@ class MapUsecase {
         .toList();
   }
 
-  double calculateDistance(CoordinateEntiry coor1, CoordinateEntiry coor2) {
+  double calculateDistance(CoordinateEntity coor1, CoordinateEntity coor2) {
     return Geolocator.distanceBetween(
       coor1.lat,
       coor1.lng,
@@ -37,17 +37,17 @@ class MapUsecase {
     );
   }
 
-  Future<CoordinateEntiry> getDeviceLocation() async {
+  Future<CoordinateEntity> getDeviceLocation() async {
     final res = await locationRepository.getDeviceLocation();
-    return CoordinateEntiry(lat: res.latitude, lng: res.longitude);
+    return CoordinateEntity(lat: res.latitude, lng: res.longitude);
   }
 
   Future<StreamSubscription> getLocationStream(
-    void Function(CoordinateEntiry message) onData,
+    void Function(CoordinateEntity message) onData,
   ) async {
     final res = await locationRepository.getLocationStream();
     return res.listen((message) {
-      onData(CoordinateEntiry(lat: message.latitude, lng: message.longitude));
+      onData(CoordinateEntity(lat: message.latitude, lng: message.longitude));
     });
   }
 }

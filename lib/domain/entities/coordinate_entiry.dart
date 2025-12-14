@@ -1,16 +1,16 @@
 import 'package:latlong2/latlong.dart';
 
-class CoordinateEntiry {
+class CoordinateEntity {
   final double lat;
   final double lng;
 
-  CoordinateEntiry({required this.lat, required this.lng});
+  CoordinateEntity({required this.lat, required this.lng});
 
-  /// convert [CoordinateEntiry] into [LatLng] so flutter_map can use
+  /// convert [CoordinateEntity] into [LatLng] so flutter_map can use
   LatLng get latLng => LatLng(lat, lng);
 }
 
 extension LatLngExt on LatLng {
-  CoordinateEntiry get toEntity =>
-      CoordinateEntiry(lat: latitude, lng: longitude);
+  CoordinateEntity get toEntity =>
+      CoordinateEntity(lat: latitude, lng: longitude);
 }

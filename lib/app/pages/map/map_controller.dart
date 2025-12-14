@@ -19,9 +19,9 @@ class MyMapController extends ChangeNotifier {
   }
 
   final mapController = MapController();
-  final defaultLocation = CoordinateEntiry(lat: 10.038636, lng: 105.773113);
-  CoordinateEntiry? currentLocation;
-  CoordinateEntiry? deviceLocation;
+  final defaultLocation = CoordinateEntity(lat: 10.038636, lng: 105.773113);
+  CoordinateEntity? currentLocation;
+  CoordinateEntity? deviceLocation;
   late double zoom = defaultInitialMapZoomValue;
   StreamSubscription? locationEvent;
   var items = <MapItemEntiry>[];
@@ -184,7 +184,7 @@ class MyMapController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future animateTo(CoordinateEntiry coordinate, [double? zoomValue]) async {
+  Future animateTo(CoordinateEntity coordinate, [double? zoomValue]) async {
     zoomValue ??= zoom;
     final latTween = Tween<double>(
       begin: currentLocation?.lat,
@@ -200,7 +200,7 @@ class MyMapController extends ChangeNotifier {
       await Future.delayed(const Duration(milliseconds: 15));
       index = (i + 1) * 0.05;
       mapController.moveAndRotate(
-        CoordinateEntiry(
+        CoordinateEntity(
           lat: latTween.transform(index),
           lng: lngTween.transform(index),
         ).latLng,
@@ -214,7 +214,7 @@ class MyMapController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void moveTo(CoordinateEntiry coordinate, [double? zoomValue]) {
+  void moveTo(CoordinateEntity coordinate, [double? zoomValue]) {
     zoomValue ??= zoom;
     mapController.moveAndRotate(coordinate.latLng, zoomValue, 0);
     currentLocation = coordinate;
@@ -222,7 +222,7 @@ class MyMapController extends ChangeNotifier {
   }
 
   Future animateOrJumpTo(
-    CoordinateEntiry coordinate, [
+    CoordinateEntity coordinate, [
     double? zoomValue,
   ]) async {
     if (currentLocation == null) {
@@ -268,7 +268,7 @@ class MyMapController extends ChangeNotifier {
       final getUserLocation = await mapUsecase.getDeviceLocation();
       deviceLocation = getUserLocation;
       notifyListeners();
-      animateOrJumpTo(getUserLocation, defaultInitialMapZoomValue);
+      await animateOrJumpTo(getUserLocation, defaultInitialMapZoomValue);
       _loadItems();
       gettingUserLocation = false;
     }
