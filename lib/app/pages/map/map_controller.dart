@@ -52,6 +52,7 @@ class MyMapController extends ChangeNotifier {
   void dispose() {
     super.dispose();
     locationEvent?.cancel();
+    getItemsTask?.cancel();
     mapController.dispose();
   }
 
